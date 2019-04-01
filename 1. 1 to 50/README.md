@@ -48,7 +48,7 @@
 
 所以我們要做的事情有兩個
 
- 	1.在畫面上放一個按鈕
+	1.在畫面上放一個按鈕
 	2.給予這個按鈕，找最小的數字並且顯示提示特效的能力
 
 我們可以開啟開發人員工具來觀察這個遊戲的html
@@ -70,17 +70,49 @@
 其實到了這邊，我們就已經整理出所有我們需要的資訊了，可以開始實作我們的程式碼
 
 ### 實作
-```HTML
-<a class='resetBtn' id='secretButton'>作弊</a>
-```
+
+首先先在開發人員工具上的`<div class="description">`按右鍵，點擊 Edit as HTML 在`<a class="resetBtn" href="javascript:;">Restart</a>`的下方輸入 `<a class='resetBtn' id='secretButton'>作弊</a>`這樣即可在畫面上看到我們的按鈕。
+>這一邊的class叫作resetbtn的原因是因為，這樣可以直接偷Restart的按鈕樣式來用，
+>而id的功用在這邊只是幫他取名字，等等javascript才方便把提示的能力指定給它。
 
 ![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.10.png)
+▲成功的話應該會在Restart旁邊看到我們的按鈕
+
+按鈕出來了以後就要開始進到javascript的部分了，首先必須要讓javascript能夠找到按鈕以及遊戲盤上所有的格子，這邊我們可以使用 document.querySelector 以及 document.querySelectorAll 這兩個瀏覽器提供的能力來選擇html上的元素(注意大小寫)
+
+```javascript
+var secretButton = document.querySelector('#secretButton')
+var gameBlock = document.querySelectorAll('#grid > div');
+```
+
+>當你今天只要拿一個東西的時候就用 querySelector ，而你要取得很多東西的時候就用 querySelectorAll 
+
+接著要給予按扭提示的能力，在網頁的世界中，你要在一個東西上做一件事來觸發一個行為的話，就要幫它加上Event Listener
+
+> 一個東西上做一件事來觸發一個行為
+> 
+> 一個東西：	按鈕
+> 一件事：		點擊       
+> 一個行為：	提示
+
+這裡的程式碼也很直覺
 
 ```javascript
 var secretButton = document.querySelector('#secretButton')
 var gameBlock = document.querySelectorAll('#grid > div');
 
-secretButton.addEventListener('click',mySecret)
+secretButton.addEventListener('click',/*提示功能*/)
+```
+
+> addEventListener('click',xxxx) 意思就是點擊(click)的時候會觸發xxxx
+
+這樣寫提示功能上去當然是沒有效果的，程式語言沒有這種黑魔法，功能的邏輯要靠我們自己去實作的，這邊我們可以寫入我們之前想要達到的程式行為：找最小的數字並且顯示提示特效
+
+```javascript
+var secretButton = document.querySelector('#secretButton')
+var gameBlock = document.querySelectorAll('#grid > div');
+
+secretButton.addEventListener('click', mySecret)
 
 function mySecret(){
     var minBlock = null;
@@ -97,16 +129,21 @@ function mySecret(){
         }
     } 
     minBlock.style.color='red';
-	
-	setTimeout(function(){minBlock.style.color='white'},400)
+    setTimeout(function(){minBlock.style.color='white'},400)
 }
 ```
 
+提示的功能完成！！！
+
 ![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.8.gif)
 
+......
 
+完成提示的功能後，才發現分數幾本上完全不會進步。原因是這個遊戲並不像大家來找碴一樣，提示按鈕在這款遊戲其實沒什麼屁用，點提示按鈕的步驟，實在是太拖台錢...
 
-如果我們可以用程式來模擬我們的點擊，不是很好嘛？
+但是既然我們的程式能夠知道現在應該點哪裡，那如果我們可以用程式來模擬我們的點擊，不是就可以很快的通關了嘛？！
+
+可以，只要我們能夠去模擬點擊遊戲格子的動作就很簡單，以下程式碼有興趣的讀者在自行去研究即可。
 
 ```javascript
 var gameBlock = document.querySelectorAll('#grid > div');
@@ -117,17 +154,15 @@ for(var y=1; y<=50 ; y++)
 	await new Promise((a)=>{
 		setTimeout(a,100);
 	})
-	
-    for(var i =0; i<=24; i++)
-    {
-        if(gameBlock[i].innerText==y)
-        {
-            gameBlock[i].dispatchEvent(event);
-        }
-    }
+ 
+   for(var i =0; i<=24; i++)
+   {
+       if(gameBlock[i].innerText==y)
+       {
+       	gameBlock[i].dispatchEvent(event);
+       }
+   }
 }
 ```
-
 ![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.9.gif)
-
-未完成
+▲有了這支程式，終於可以分享FB

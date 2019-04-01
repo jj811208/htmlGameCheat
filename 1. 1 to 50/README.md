@@ -1,7 +1,7 @@
 # 1 to 50
 
 ## 遊戲介紹
-![1 to 50]()
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.1.png)
 
 遊戲網址：[1 to 50](http://zzzscore.com/1to50/en/?ts=1553662600958)
 
@@ -25,15 +25,18 @@
 
 ## 教學
 
+第一次進入遊戲
 
-![1 to 50]()
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.2.gif)
 
-第一次進入遊戲，我經過一番努力，得到的成績為：
+我經過一番努力，得到的成績為：
 
-![1 to 50]()
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.3.png)
 
-這樣下去是不行的，不如我們把它...
 
+...
+
+~~這樣下去是不行的，這種成績沒辦法po到facebook炫耀~~
 
 ### 思考邏輯
 
@@ -48,24 +51,30 @@
  	1.在畫面上放一個按鈕
 	2.給予這個按鈕，找最小的數字並且顯示提示特效的能力
 
-我們可以開啟開發者工具來觀察這個遊戲的html
+我們可以開啟開發人員工具來觀察這個遊戲的html
 
-![1 to 50]()
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.4.png)
 
 首先需要找到可以放按鈕的地方，這邊我發現遊戲中有一個reset按鈕，等等提示的按鈕可以放到它旁邊，按鈕的樣式他都寫好了，可以偷懶一下直接拿他的來用
 
-![1 to 50]()
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.5.png)
 
 接著再繼續觀察，可以發現整個遊戲盤都被裝在`<div class="grid x5" id="grid">`裡面
 
-點開他底下的div我們就可以看到棋盤上的數字了，
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.6.png)
 
-到了這邊我們已經整理出所有我們需要的資訊了，終於可以開始實作我們的程式碼
+點開它底下的div就可以看到棋盤上的數字了，
+
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.7.png)
+
+其實到了這邊，我們就已經整理出所有我們需要的資訊了，可以開始實作我們的程式碼
 
 ### 實作
 ```HTML
 <a class='resetBtn' id='secretButton'>作弊</a>
 ```
+
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.10.png)
 
 ```javascript
 var secretButton = document.querySelector('#secretButton')
@@ -93,6 +102,8 @@ function mySecret(){
 }
 ```
 
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.8.gif)
+
 
 
 如果我們可以用程式來模擬我們的點擊，不是很好嘛？
@@ -116,5 +127,7 @@ for(var y=1; y<=50 ; y++)
     }
 }
 ```
+
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.9.gif)
 
 未完成

@@ -57,7 +57,7 @@
 
 首先需要找到可以放按鈕的地方，這邊我發現遊戲中有一個Restart按鈕，等等提示的按鈕可以放到它旁邊，按鈕的樣式他都寫好了，可以偷懶直接拿他的來用
 
-接著再繼續觀察，可以發現整個遊戲盤都被裝在`<div class="grid x5" id="grid">`裡面
+接著再繼續觀察，可以發現整個遊戲盤都被裝在`<div class="grid x5" id="grid">`裡面，等等直接比對這裡面的數字就好
 
 ![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.6.png)
 
@@ -65,11 +65,18 @@
 
 ▲把div點開就可以看到棋盤上的數字了，
 
-其實到了這邊，我們就已經整理出所有開發功能需要的資訊了，可以開始進入實作的環節
+很快的，我們已經整理出開發上需要的所有資訊以及邏輯了，
+
+1. 做什麼 > 在畫面上放一個按鈕，給予它提示的能力
+
+2. 如何做 > 比對出最小的數字並且顯示特效
+
+3. 比對哪裡的數字 > `<div class="grid x5" id="grid">`裡面的`<div>`內的數字
 
 ### 實作
 
 首先先在開發人員工具上的`<div class="description">`按右鍵，點擊 Edit as HTML 在`<a class="resetBtn" href="javascript:;">Restart</a>`的下方輸入 `<a class='resetBtn' id='secretButton'>作弊</a>`這樣即可在畫面上看到我們的按鈕。
+
 >這一邊的class叫作resetbtn的原因是因為，這樣可以直接偷Restart的按鈕樣式來用，
 >而id的功用在這邊只是幫他取名字，等等javascript才方便把提示的能力指定給它。
 
@@ -86,7 +93,7 @@ var gameBlock = document.querySelectorAll('#grid > div');
 
 >當你今天只要拿一個東西的時候就用 querySelector ，而你要取得很多東西的時候就用 querySelectorAll 
 
-接著要給予按扭提示的能力，在網頁的世界中，你要在一個東西上做一件事來觸發一個行為的話，就要幫它加上Event Listener
+接著要給予按扭提示的能力，在網頁的世界中，你要在一個東西上做一件事來觸發一個行為的話，就要幫它加上 Event Listener (事件監聽器)
 
 > 一個東西上做一件事來觸發一個行為
 > 

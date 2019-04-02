@@ -35,10 +35,14 @@
 
 3.叫出開發人員工具 
 
+![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/console.png)
+
 	快捷鍵
     
 	Windows:    F12
     
 	Mac:        option + command + i
+	
+	
 
 4.開始學習

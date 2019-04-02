@@ -36,7 +36,7 @@
 
 ...
 
-~~這樣下去是不行的，這種成績沒辦法po到facebook炫耀~~
+~~這樣下去是不行的，這種成績根本沒辦法po到facebook炫耀~~
 
 ### 思考邏輯
 
@@ -112,7 +112,7 @@ var gameBlock = document.querySelectorAll('#grid > div');
 secretButton.addEventListener('click',/*提示功能*/)
 ```
 
-> addEventListener('click',xxxx) 意思就是點擊(click)的時候會觸發xxxx
+> oooo.addEventListener('click',xxxx) 意思就是點擊(click)oooo的時候會觸發xxxx
 
 這樣寫提示功能上去當然是沒有效果的，程式語言沒有這種黑魔法，功能的邏輯要靠我們自己去實作的，不過邏輯我們在剛剛就已經想好了，找最小的數字並且顯示提示特效
 
@@ -123,14 +123,9 @@ var gameBlock = document.querySelectorAll('#grid > div');
 secretButton.addEventListener('click', mySecret)
 
 function mySecret(){
-    var minBlock = null;
+    var minBlock = gameBlock[0];
     for(var i =0; i<=24; i++)
     {
-        if(minBlock==null)
-        {
-            minBlock = gameBlock[i];
-        }
-
         if(parseInt(gameBlock[i].innerText) < parseInt(minBlock.innerText))
         {
             minBlock = gameBlock[i];
@@ -172,6 +167,7 @@ for(var y=1; y<=50 ; y++)
    }
 }
 ```
+
 ![1 to 50](https://raw.githubusercontent.com/jj811208/htmlGameCheat/master/asset/1.9.gif)
 
 ▲有了這支程式，終於可以把成績分享到FB
